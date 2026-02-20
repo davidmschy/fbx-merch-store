@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FBX Gear — Official Team Store</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card: #161616;
+      --border: #222222;
+      --accent: #c8a96e;
+      --accent-dark: #a88a52;
+      --white: #f5f5f5;
+      --gray: #888888;
+      --light-gray: #cccccc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(10,10,10,0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .team-code-btn {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .team-code-btn:hover {
+      background: var(--accent);
+      color: var(--black);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(200,169,110,0.06) 0%, transparent 70%),
+        linear-gradient(180deg, transparent 60%, var(--black) 100%);
+      pointer-events: none;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(120px, 20vw, 280px);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: rgba(255,255,255,0.02);
+      text-transform: uppercase;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-title .line-gold { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 16px 36px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--border);
+      padding: 16px 36px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTION */
+    section {
+      padding: 100px 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--gray);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 64px;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      padding: 10px 24px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cat-btn.active, .cat-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200,169,110,0.05);
+    }
+
+    /* PRODUCT GRID */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover { border-color: var(--accent); }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .product-img-icon {
+      font-size: 64px;
+      opacity: 0.15;
+    }
+
+    .product-img-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      opacity: 0.5;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      background: var(--accent);
+      color: var(--black);
+      font-weight: 700;
+    }
+
+    .product-info {
+      padding: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .product-category {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .product-price-team {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .product-sizes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .size-chip {
+      font-size: 10px;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+
+    .add-to-cart {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 10px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .add-to-cart:hover { background: var(--accent-dark); }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
+    }
+
+    /* TEAM SECTION */
+    .team-section {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .team-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border: 1px solid var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .team-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .team-badge-text {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .discount-display {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+
+    .discount-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .discount-code {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      margin-bottom: 12px;
+    }
+
+    .discount-value {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .discount-value strong { color: var(--white); }
+
+    /* PROCESS */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .process-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+    }
+
+    .step-number {
+      font-size: 48px;
+      font-weight: 900;
+      color: rgba(200,169,110,0.15);
+      line-height: 1;
+      margin-bottom: 24px;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      max-width: 520px;
+      width: 100%;
+      padding: 48px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-close:hover { color: var(--white); }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .modal-sub {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .modal-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 14px 18px;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .modal-input::placeholder { color: var(--gray); text-transform: uppercase; }
+    .modal-input:focus { outline: none; border-color: var(--accent); }
+
+    .modal-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .modal-btn:hover { background: var(--accent-dark); }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .modal-success.show { display: block; }
+
+    .modal-success-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .modal-success-title {
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .modal-success-code {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.15em;
+      margin: 16px 0;
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--accent);
+    }
+
+    /* CART */
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 420px;
+      background: var(--dark);
+      border-left: 1px solid var(--border);
+      z-index: 200;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .cart-close {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px;
+    }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 12px;
+      color: var(--gray);
+    }
+
+    .cart-empty-icon { font-size: 48px; opacity: 0.3; }
+
+    .cart-empty-text {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-img {
+      width: 72px;
+      height: 72px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .cart-item-info { flex: 1; }
+
+    .cart-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cart-item-variant {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .cart-item-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 18px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    .cart-footer {
+      padding: 24px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .cart-total-label {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .cart-total-amount {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .cart-checkout {
+      width: 100%;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .cart-checkout:hover { background: var(--accent-dark); }
+
+    .cart-discount-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .cart-discount-input {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 10px 14px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+    }
+
+    .cart-discount-input:focus { outline: none; border-color: var(--accent); }
+
+    .cart-discount-apply {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      padding: 10px 16px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cart-discount-apply:hover { border-color: var(--accent); color: var(--accent); }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 199;
+      display: none;
+    }
+
+    .cart-overlay.open { display: block; }
+
+    /* FOOTER */
+    footer {
+      padding: 60px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-text {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* SIZE SELECTOR MODAL */
+    .size-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .size-modal.open { display: flex; }
+
+    .size-modal-inner {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      max-width: 480px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+    }
+
+    .size-modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .size-modal-product {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+    }
+
+    .size-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .size-btn {
+      padding: 12px 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--light-gray);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .size-btn:hover, .size-btn.selected {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200,169,110,0.08);
+    }
+
+    .color-grid {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 36px;
+      height: 36px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .color-swatch.selected {
+      border-color: var(--accent);
+    }
+
+    .color-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      section { padding: 60px 24px; }
+      .divider { margin: 0 24px; }
+      .team-inner { grid-template-columns: 1fr; gap: 40px; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
+      .cart-drawer { width: 100%; }
+    }
+
+    @media (max-width: 600px) {
+      .process-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Order</span>
+    <button class="cart-close" onclick="closeCart()">&#215;</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">&#9744;</div>
+      <div class="cart-empty-text">No items yet</div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-discount-row">
+      <input class="cart-discount-input" id="discountInput" placeholder="Team discount code" />
+      <button class="cart-discount-apply" onclick="applyDiscount()">Apply</button>
+    </div>
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cartTotal">$0.00</span>
+    </div>
+    <button class="cart-checkout" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">FBX<span>.</span>GEAR</div>
+  <ul class="nav-links">
+    <li><a href="#catalog">Catalog</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#how">How It Works</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="team-code-btn" onclick="openTeamModal()">Team Code</button>
+    <button class="btn-secondary" style="padding:10px 20px; font-size:12px;" onclick="openCart()">
+      Cart (<span id="cartCount">0</span>)
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">FBX</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">&#9632; Official Team Merchandise</div>
+    <h1 class="hero-title">
+      WEAR<br>
+      THE <span class="line-gold">BUILD.</span>
+    </h1>
+    <p class="hero-sub">
+      Premium branded gear for the FBX team and events. Embroidered logos, quality materials, shipped direct. No inventory, no hassle.
+    </p>
+    <div class="hero-cta">
+      <a href="#catalog" class="btn-primary">Shop Catalog</a>
+      <button class="btn-secondary" onclick="openTeamModal()">Team Discount</button>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog">
+  <div class="section-label">&#9632; Product Catalog</div>
+  <h2 class="section-title">FBX BRANDED GEAR</h2>
+  <p class="section-sub">All items embroidered with the FBX logo. Ships in 3-7 business days via Printful.</p>
+
+  <div class="categories">
+    <button class="cat-btn active" onclick="filterCat('all', this)">All Items</button>
+    <button class="cat-btn" onclick="filterCat('tops', this)">Tops</button>
+    <button class="cat-btn" onclick="filterCat('outerwear', this)">Outerwear</button>
+    <button class="cat-btn" onclick="filterCat('headwear', this)">Headwear</button>
+    <button class="cat-btn" onclick="filterCat('accessories', this)">Accessories</button>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TEAM SECTION -->
+<section id="team" class="team-section">
+  <div class="team-inner">
+    <div>
+      <div class="team-badge">
+        <div class="team-badge-dot"></div>
+        <span class="team-badge-text">FBX Team Members</span>
+      </div>
+      <h2 class="section-title">TEAM<br>DISCOUNT</h2>
+      <p class="section-sub" style="margin-bottom:32px;">
+        FBX team members get a discount on all orders. Enter your team code at checkout to unlock your pricing.
+      </p>
+      <button class="btn-primary" onclick="openTeamModal()">Get Team Code</button>
+    </div>
+    <div>
+      <div class="discount-display">
+        <div class="discount-label">Team Discount Code</div>
+        <div class="discount-code" id="displayCode">FBX-TEAM</div>
+        <div class="discount-value">
+          <strong>20% off</strong> all items &mdash; applied at checkout
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">&#9632; Process</div>
+  <h2 class="section-title">HOW IT WORKS</h2>
+  <p class="section-sub">Fully automated. You order, Printful handles the rest.</p>
+
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">01</div>
+      <div class="step-title">Choose Your Gear</div>
+      <div class="step-desc">Browse the catalog and select your items, sizes, and colors. FBX branding is pre-configured on every product.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-number">02</div>
+      <div class="step-title">Apply Team Code</div>
+      <div class="step-desc">FBX team members add their discount code at checkout. 20% off all orders, automatically applied.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-number">03</div>
+      <div class="step-title">Printful Fulfills</div>
+      <div class="step-desc">Orders go directly to Printful for production. Embroidery applied, quality checked, packaged.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-number">04</div>
+      <div class="step-title">Ships Direct</div>
+      <div class="step-desc">Delivered to your door in 3-7 business days. Tracking provided automatically via email.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FBX<span>.</span>GEAR</div>
+  <div class="footer-text">Powered by Printful &mdash; Print on demand</div>
+  <div class="footer-links">
+    <a href="#catalog">Catalog</a>
+    <a href="https://fbx.homes">FBX.homes</a>
+    <a href="mailto:team@fbx.homes">Contact</a>
+  </div>
+</footer>
+
+<!-- TEAM CODE MODAL -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeTeamModal()">&#215;</button>
+    <div id="teamModalForm">
+      <div class="modal-title">Team Access</div>
+      <p class="modal-sub">Enter your FBX email to receive your team discount code.</p>
+      <input class="modal-input" id="teamEmail" placeholder="your@fbx.homes email" type="email" />
+      <button class="modal-btn" onclick="submitTeamCode()">Get My Code</button>
+    </div>
+    <div class="modal-success" id="teamModalSuccess">
+      <div class="modal-success-icon">&#10003;</div>
+      <div class="modal-success-title">You're on the team.</div>
+      <div class="modal-success-code" id="successCodeDisplay">FBX-TEAM</div>
+      <p style="font-size:14px; color:var(--gray); line-height:1.6;">
+        Use this code at checkout for <strong style="color:var(--white)">20% off</strong> your entire order. Add it in the cart before checking out.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SIZE SELECTOR MODAL -->
+<div class="size-modal" id="sizeModal">
+  <div class="size-modal-inner">
+    <button class="modal-close" onclick="closeSizeModal()">&#215;</button>
+    <div class="size-modal-title">Select Options</div>
+    <div class="size-modal-product" id="sizeModalProduct">FBX Classic Polo</div>
+
+    <div id="colorSection">
+      <div class="color-label">Color</div>
+      <div class="color-grid" id="colorGrid"></div>
+    </div>
+
+    <div id="sizeSection">
+      <div class="color-label" style="margin-top:20px;">Size</div>
+      <div class="size-grid" id="sizeGrid"></div>
+    </div>
+
+    <button class="modal-btn" onclick="confirmAddToCart()">Add to Cart</button>
+  </div>
+</div>
+
+<script>
+  // ========== PRODUCT CATALOG ==========
+  const PRODUCTS = [
+    {
+      id: 'polo-classic',
+      name: 'FBX Classic Polo',
+      category: 'tops',
+      tag: 'Best Seller',
+      price: 42,
+      desc: 'Premium pique polo with embroidered FBX logo on left chest. Perfect for client meetings and site visits.',
+      icon: '&#128084;',
+      sizes: ['XS','S','M','L','XL','2XL','3XL'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'White', hex: '#f5f5f5' },
+        { name: 'Navy', hex: '#1a2744' },
+        { name: 'Gray', hex: '#666666' },
+      ],
+      printfulId: 'polo-sport-polo'
+    },
+    {
+      id: 'pullover-hoodie',
+      name: 'FBX Pullover Hoodie',
+      category: 'outerwear',
+      tag: null,
+      price: 58,
+      desc: 'Heavy 8.5oz fleece pullover. FBX logo embroidered on chest, clean and minimal.',
+      icon: '&#128084;',
+      sizes: ['S','M','L','XL','2XL','3XL'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'Charcoal', hex: '#333333' },
+        { name: 'Navy', hex: '#1a2744' },
+      ],
+      printfulId: 'gildan-18500'
+    },
+    {
+      id: 'snapback-hat',
+      name: 'FBX Snapback Cap',
+      category: 'headwear',
+      tag: 'Team Favorite',
+      price: 34,
+      desc: 'Structured 6-panel snapback. FBX logo embroidered on front panel. One size fits most.',
+      icon: '&#127913;',
+      sizes: ['One Size'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'Black/Gold', hex: '#111111' },
+        { name: 'Navy', hex: '#1a2744' },
+      ],
+      printfulId: 'yupoong-6089'
+    },
+    {
+      id: 'quarter-zip',
+      name: 'FBX Quarter-Zip',
+      category: 'outerwear',
+      tag: null,
+      price: 64,
+      desc: 'Performance quarter-zip pullover. FBX logo on chest. Ideal for events and outdoor work.',
+      icon: '&#128084;',
+      sizes: ['S','M','L','XL','2XL'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'Navy', hex: '#1a2744' },
+        { name: 'Gray', hex: '#666666' },
+      ],
+      printfulId: 'sport-tek-st860'
+    },
+    {
+      id: 'dad-hat',
+      name: 'FBX Dad Hat',
+      category: 'headwear',
+      tag: null,
+      price: 28,
+      desc: 'Unstructured cotton dad hat with curved brim. FBX logo embroidered front. Relaxed fit.',
+      icon: '&#127913;',
+      sizes: ['One Size'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'Khaki', hex: '#c8a96e' },
+        { name: 'White', hex: '#f5f5f5' },
+      ],
+      printfulId: 'flexfit-dad-hat'
+    },
+    {
+      id: 'bomber-jacket',
+      name: 'FBX Bomber Jacket',
+      category: 'outerwear',
+      tag: 'Premium',
+      price: 98,
+      desc: 'Premium bomber jacket with FBX embroidered on chest and back. Event and leadership wear.',
+      icon: '&#129464;',
+      sizes: ['S','M','L','XL','2XL'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'Olive', hex: '#556b2f' },
+      ],
+      printfulId: 'augusta-3160'
+    },
+    {
+      id: 'tshirt-premium',
+      name: 'FBX Premium Tee',
+      category: 'tops',
+      tag: null,
+      price: 28,
+      desc: 'Heavyweight 6.1oz cotton tee. FBX logo on chest. Clean, simple, everyday wear.',
+      icon: '&#128084;',
+      sizes: ['XS','S','M','L','XL','2XL','3XL','4XL'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'White', hex: '#f5f5f5' },
+        { name: 'Charcoal', hex: '#333333' },
+        { name: 'Navy', hex: '#1a2744' },
+      ],
+      printfulId: 'gildan-g500'
+    },
+    {
+      id: 'beanie',
+      name: 'FBX Embroidered Beanie',
+      category: 'headwear',
+      tag: null,
+      price: 26,
+      desc: 'Cuffed knit beanie with FBX patch. Warm, clean, works for winter events and job sites.',
+      icon: '&#127913;',
+      sizes: ['One Size'],
+      colors: [
+        { name: 'Black', hex: '#111111' },
+        { name: 'Charcoal', hex: '#333333' },
+        { name: 'Navy', hex: '#1a2744' },
+      ],
+      printfulId: 'richardson-145'
+    },
+    {
+      id: 'tote-bag',
+      name: 'FBX Canvas Tote',
+      category: 'accessories',
+      tag: null,
+      price: 22,
+      desc: 'Heavy canvas tote with FBX logo. Great for events, swag bags, and daily carry.',
+      icon: '&#128084;',
+      sizes: ['One Size'],
+      colors: [
+        { name: 'Natural', hex: '#d4c5a9' },
+        { name: 'Black', hex: '#111111' },
+      ],
+      printfulId: 'tote-bag-canvas'
+    },
+  ];
+
+  // ========== STATE ==========
+  let cart = [];
+  let discount = 0;
+  let selectedProduct = null;
+  let selectedSize = null;
+  let selectedColor = null;
+
+  // ========== RENDER PRODUCTS ==========
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('productGrid');
+    const filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
+
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card" data-id="${p.id}">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <div class="product-img-icon">${p.icon}</div>
+            <div class="product-img-label">FBX Branded</div>
+          </div>
+          ${p.tag ? `<div class="product-tag">${p.tag}</div>` : ''}
+        </div>
+        <div class="product-info">
+          <div class="product-category">${p.category}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.desc}</div>
+          <div class="product-sizes">
+            ${p.sizes.slice(0,5).map(s => `<span class="size-chip">${s}</span>`).join('')}
+            ${p.sizes.length > 5 ? `<span class="size-chip">+${p.sizes.length - 5}</span>` : ''}
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">$${p.price}</div>
+              <div class="product-price-team">~$${Math.round(p.price * 0.8)} w/ team code</div>
+            </div>
+            <button class="add-to-cart" onclick="openSizeModal('${p.id}')">Select &amp; Add</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ========== FILTER ==========
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(cat);
+  }
+
+  // ========== SIZE MODAL ==========
+  function openSizeModal(productId) {
+    selectedProduct = PRODUCTS.find(p => p.id === productId);
+    selectedSize = null;
+    selectedColor = null;
+
+    document.getElementById('sizeModalProduct').textContent = selectedProduct.name;
+
+    // Colors
+    const colorGrid = document.getElementById('colorGrid');
+    colorGrid.innerHTML = selectedProduct.colors.map((c, i) => `
+      <div class="color-swatch ${i === 0 ? 'selected' : ''}"
+           style="background: ${c.hex}; border: 2px solid ${i === 0 ? 'var(--accent)' : '#333'};"
+           title="${c.name}"
+           onclick="selectColor(this, '${c.name}')">
+      </div>
+    `).join('');
+    selectedColor = selectedProduct.colors[0].name;
+
+    // Sizes
+    const sizeGrid = document.getElementById('sizeGrid');
+    sizeGrid.innerHTML = selectedProduct.sizes.map(s => `
+      <button class="size-btn" onclick="selectSize(this, '${s}')">${s}</button>
+    `).join('');
+
+    if (selectedProduct.sizes.length === 1) {
+      selectedSize = selectedProduct.sizes[0];
+      document.querySelector('.size-btn').classList.add('selected');
+    }
+
+    document.getElementById('sizeModal').classList.add('open');
+  }
+
+  function selectColor(el, name) {
+    document.querySelectorAll('.color-swatch').forEach(s => {
+      s.style.border = '2px solid #333';
+    });
+    el.style.border = '2px solid var(--accent)';
+    selectedColor = name;
+  }
+
+  function selectSize(el, size) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSize = size;
+  }
+
+  function closeSizeModal() {
+    document.getElementById('sizeModal').classList.remove('open');
+  }
+
+  function confirmAddToCart() {
+    if (!selectedSize) {
+      alert('Please select a size.');
+      return;
+    }
+    addToCart(selectedProduct, selectedSize, selectedColor);
+    closeSizeModal();
+    openCart();
+  }
+
+  // ========== CART ==========
+  function addToCart(product, size, color) {
+    const existing = cart.find(i => i.id === product.id && i.size === size && i.color === color);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ ...product, size, color, qty: 1 });
+    }
+    updateCartUI();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const count = cart.reduce((a, i) => a + i.qty, 0);
+    document.getElementById('cartCount').textContent = count;
+
+    const itemsEl = document.getElementById('cartItems');
+    if (cart.length === 0) {
+      itemsEl.innerHTML = `
+        <div class="cart-empty">
+          <div class="cart-empty-icon">&#9744;</div>
+          <div class="cart-empty-text">No items yet</div>
+        </div>
+      `;
+    } else {
+      itemsEl.innerHTML = cart.map((item, i) => `
+        <div class="cart-item">
+          <div class="cart-item-img">${item.icon}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-variant">${item.color} / ${item.size} &times; ${item.qty}</div>
+            <div class="cart-item-price">$${(item.price * item.qty * (1 - discount)).toFixed(2)}</div>
+          </div>
+          <button class="cart-item-remove" onclick="removeFromCart(${i})">&#215;</button>
+        </div>
+      `).join('');
+    }
+
+    const subtotal = cart.reduce((a, i) => a + i.price * i.qty, 0);
+    const total = subtotal * (1 - discount);
+    document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+  }
+
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+  }
+
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+  }
+
+  function applyDiscount() {
+    const code = document.getElementById('discountInput').value.trim().toUpperCase();
+    const VALID_CODES = { 'FBX-TEAM': 0.20, 'FBXTEAM': 0.20, 'TEAM20': 0.20 };
+    if (VALID_CODES[code]) {
+      discount = VALID_CODES[code];
+      updateCartUI();
+      document.getElementById('discountInput').style.borderColor = 'var(--accent)';
+      alert(`Team discount applied! ${discount * 100}% off your order.`);
+    } else {
+      alert('Invalid discount code. Try FBX-TEAM for team members.');
+    }
+  }
+
+  function checkout() {
+    if (cart.length === 0) {
+      alert('Your cart is empty.');
+      return;
+    }
+    // This will redirect to Printful checkout once integrated
+    alert('Redirecting to checkout... (Printful integration will be configured with your API key)');
+  }
+
+  // ========== TEAM MODAL ==========
+  function openTeamModal() {
+    document.getElementById('teamModal').classList.add('open');
+    document.getElementById('teamModalForm').style.display = 'block';
+    document.getElementById('teamModalSuccess').classList.remove('show');
+  }
+
+  function closeTeamModal() {
+    document.getElementById('teamModal').classList.remove('open');
+  }
+
+  function submitTeamCode() {
+    const email = document.getElementById('teamEmail').value.trim();
+    if (!email) {
+      alert('Please enter your email.');
+      return;
+    }
+    // Validate FBX email domain (or any email for now)
+    const code = 'FBX-TEAM';
+    document.getElementById('successCodeDisplay').textContent = code;
+    document.getElementById('teamModalForm').style.display = 'none';
+    document.getElementById('teamModalSuccess').classList.add('show');
+  }
+
+  // Close modals on overlay click
+  document.getElementById('teamModal').addEventListener('click', function(e) {
+    if (e.target === this) closeTeamModal();
+  });
+  document.getElementById('sizeModal').addEventListener('click', function(e) {
+    if (e.target === this) closeSizeModal();
+  });
+
+  // ========== INIT ==========
+  renderProducts();
+</script>
+</body>
+</html>
